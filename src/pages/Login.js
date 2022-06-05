@@ -3,8 +3,31 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function Login() {
   const [showSignup, setShowSignup] = useState(false);
+  const [message, setMessage] = useState("");
+
   const toggleSignup = () => {
     setShowSignup(!showSignup);
+  };
+
+  const signupFn = (e) => {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    const data = {
+      name: name,
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+    };
+    console.log(data);
+    e.preventDefault();
+    if (name != "" && email != "" && password != "" && confirmPassword != "") {
+      setMessage("Sign up is Successful!");
+    } else {
+      setMessage("Sign up is Unsuccessful!");
+    }
   };
 
   const signinFn = (e) => {
@@ -16,7 +39,12 @@ function Login() {
       password: password,
     };
     console.log(data);
-    alert("Logged in successful!");
+    e.preventDefault();
+    if (email != "" && password != "") {
+      setMessage("Sign up is Successful!");
+    } else {
+      setMessage("Sign up is Unsuccessful!");
+    }
   };
 
   return (
@@ -63,6 +91,8 @@ function Login() {
                     >
                       No Account? Create one!
                     </div>
+                    <br />
+                    <h5 className="text-center">{message}</h5>
                   </form>
                 </div>
               ) : (
@@ -74,6 +104,7 @@ function Login() {
                         type="text"
                         className="form-control"
                         placeholder="Name"
+                        id="name"
                       />
                     </div>
                     <div className="input-group m-1">
@@ -81,6 +112,7 @@ function Login() {
                         type="text"
                         className="form-control"
                         placeholder="Email"
+                        id="email"
                       />
                     </div>
 
@@ -89,6 +121,7 @@ function Login() {
                         type="password"
                         className="form-control"
                         placeholder="Password"
+                        id="password"
                       />
                     </div>
                     <div className="input-group m-1">
@@ -96,14 +129,16 @@ function Login() {
                         type="password"
                         className="form-control"
                         placeholder="Confirm Password"
+                        id="confirmPassword"
                       />
                     </div>
 
-                    <div className="input-group m-1">
+                    <div className="input-group m-1 mt-4">
                       <input
                         type="submit"
                         className="form-control btn btn-primary"
                         value="Sign up"
+                        onClick={signupFn}
                       />
                     </div>
                     <div
@@ -112,6 +147,8 @@ function Login() {
                     >
                       Already accout exists? Signin here!
                     </div>
+                    <br />
+                    <h5 className="text-center">{message}</h5>
                   </form>
                 </div>
               )}
