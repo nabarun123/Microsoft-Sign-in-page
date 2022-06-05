@@ -41,9 +41,9 @@ function Login() {
     console.log(data);
     e.preventDefault();
     if (email != "" && password != "") {
-      setMessage("Sign up is Successful!");
+      setMessage("Sign in is Successful!");
     } else {
-      setMessage("Sign up is Unsuccessful!");
+      setMessage("Sign in is Unsuccessful!");
     }
   };
 
